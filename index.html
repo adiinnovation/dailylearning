@@ -2,37 +2,37 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#11182b"><meta name="description" content="One focused skill. One complete topic. Every day.">
+<meta name="theme-color" content="#11182b"><meta name="description" content="Build confidence in communication and spoken English every week.">
 <link rel="manifest" href="manifest.json"><link rel="icon" href="icon.svg" type="image/svg+xml">
-<title>adiinnoVation | One Day · One Complete Topic</title><link rel="stylesheet" href="style.css">
+<title>adiinnoVation | Communication Skills & Spoken English</title><link rel="stylesheet" href="style.css">
 </head>
 <body>
 <div class="app">
 <header class="topbar">
-  <div class="brand"><div><b>adiinno<span class="brand-v">V</span>ation</b><small>ONE DAY · ONE COMPLETE TOPIC</small></div></div>
-  <div class="top-right"><label class="sr-only" for="languageSelect">Language</label><select id="languageSelect" class="top-language" aria-label="Choose language"><option value="en">English</option><option value="ml">മലയാളം</option></select><span class="streak" id="streak">🔥 0 day streak</span><button class="round-btn" id="installBtn" hidden title="Install app">＋</button><button class="round-btn" id="themeBtn" title="Toggle theme">◐</button></div>
+  <div class="brand"><div><b>adiinno<span class="brand-v">V</span>ation</b><small>ONE WEEK · ONE COMPLETE TOPIC</small></div></div>
+  <div class="top-right"><label class="sr-only" for="languageSelect">Language</label><select id="languageSelect" class="top-language" aria-label="Choose language"><option value="en">English</option><option value="ml">മലയാളം</option></select><span class="streak" id="streak">🔥 0 week streak</span><button class="round-btn" id="installBtn" hidden title="Install app">＋</button><button class="round-btn" id="themeBtn" title="Toggle theme">◐</button></div>
 </header>
 <main>
 <section class="welcome">
-  <div class="eyebrow" id="dateLabel">TODAY'S LEARNING SESSION</div>
+  <div class="eyebrow" id="dateLabel">THIS WEEK'S LEARNING SESSION</div>
   <h1>One topic.<br><em>Complete mastery.</em></h1>
-  <p>Focus on one useful skill today. Learn it, listen to it, practise it and prove what you know.</p>
+  <p>Explore one useful topic throughout the week. Learn, listen, practise and prove what you know at your own pace.</p>
 </section>
 <section class="today-card">
-  <div class="today-top"><span class="today-pill">TODAY'S COMPLETE TOPIC</span><span id="topicNumber">DAY 01</span></div>
+  <div class="today-top"><span class="today-pill">THIS WEEK'S COMPLETE TOPIC</span><span id="topicNumber">WEEK 01</span></div>
   <div class="topic-emoji" id="topicEmoji">📊</div>
-  <div class="topic-kicker" id="topicCategory">DATA ANALYTICS</div>
-  <h2 id="topicTitle">Knowledge in Artificial Intelligence &amp; Generative AI</h2>
-  <p id="topicDesc">Understand KPIs, prepare data, create measures and build a meaningful dashboard.</p>
-  <div class="meta"><span>◷ <b id="duration">60</b>-minute learning plan</span><span>▣ Beginner-to-practical skills</span><span>🏆 Complete the lessons and download your certificate</span></div>
+  <div class="topic-kicker" id="topicCategory">COMMUNICATION & LANGUAGE SKILLS</div>
+  <h2 id="topicTitle">Communication Skills &amp; Spoken English</h2>
+  <p id="topicDesc">Build confidence in everyday conversations, improve spoken English and communicate clearly.</p>
+  <div class="meta"><span>◷ <b id="duration">60</b>-minute weekly learning plan</span><span>▣ Beginner-to-practical skills</span><span>🏆 Complete the lessons and download your certificate</span></div>
   <div class="progress-track"><div id="progressBar"></div></div>
-  <div class="progress-label"><span id="progressText">0 of 5 sections completed</span><span id="progressPercent">0%</span></div>
-  <button class="primary wide" id="beginBtn">Start today's topic <span>→</span></button>
+  <div class="progress-label"><span id="progressText">0 of 10 sections completed</span><span id="progressPercent">0%</span></div>
+  <button class="primary wide" id="beginBtn">Start this week's topic <span>→</span></button>
 </section>
-<section class="section-head"><div><div class="eyebrow">YOUR COMPLETE LEARNING PATH</div><h2>Today's study plan</h2></div><span class="time-chip">60 MINUTES</span></section>
+<section class="section-head"><div><div class="eyebrow">YOUR COMPLETE LEARNING PATH</div><h2>This week's study plan</h2></div><span class="time-chip">140 MINUTES · THIS WEEK</span></section>
 <div class="steps" id="stepList"></div>
 <section class="lesson-area" id="lessonArea">
-  <div class="lesson-head"><div><div class="eyebrow" id="sectionCounter">SECTION 1 OF 5</div><h2 id="sectionTitle">Understand the concept</h2></div><span class="section-icon" id="sectionIcon">01</span></div>
+  <div class="lesson-head"><div><div class="eyebrow" id="sectionCounter">SECTION 1 OF 10</div><h2 id="sectionTitle">Understand the concept</h2></div><span class="section-icon" id="sectionIcon">01</span></div>
   <div id="lessonBody" class="lesson-body"></div>
   <div class="audio-panel"><div class="audio-symbol">♫</div><div class="audio-copy"><b>Listen and learn</b><small>Choose English or Malayalam audio.</small></div><button id="audioBtn" class="audio-btn">▶ Listen</button><button id="pauseBtn" class="mini-btn" title="Pause/resume">Ⅱ</button><button id="stopBtn" class="mini-btn" title="Stop">■</button></div>
   <div class="section-controls"><button class="secondary" id="prevBtn">← Previous</button><button class="primary" id="doneBtn">Complete section ✓</button><button class="secondary" id="nextBtn">Next →</button></div>
@@ -42,7 +42,7 @@
 
 <section class="games-area" id="learningGames">
   <div class="section-head"><div><div class="eyebrow">PLAY · PRACTISE · REMEMBER</div><h2>Learning games</h2></div><span class="time-chip">5–10 MIN</span></div>
-  <p class="games-intro">Test what you learned today with short AI and Generative AI games. Earn points as you practise.</p>
+  <p class="games-intro">Practise communication, spoken English and everyday conversations through short interactive games.</p>
   <div class="game-tabs">
     <button class="game-tab active" data-game="match">Match pairs</button>
     <button class="game-tab" data-game="truefalse">True or false</button>
@@ -50,7 +50,7 @@
   </div>
   <div class="game-card" id="gamePanel">
     <div class="game-topline"><span class="game-label" id="gameLabel">GAME 01 · MATCH PAIRS</span><span class="game-score" id="gameScore">⭐ 0 points</span></div>
-    <h3 id="gameTitle">Match the AI concepts</h3>
+    <h3 id="gameTitle">Match the communication skills</h3>
     <p id="gameInstructions">Choose a term, then choose its correct meaning.</p>
     <div id="gameContent"></div>
     <div class="game-feedback" id="gameFeedback" aria-live="polite"></div>
@@ -60,12 +60,11 @@
 <section class="section-head apply-check-heading"><div><div class="eyebrow">LEARN · APPLY · CHECK</div><h2>Apply what you learned and check your understanding</h2></div></section>
 <section class="practice-grid" id="practice">
   <div class="practice-card">
-    <div class="eyebrow">APPLY WHAT YOU LEARNED</div><h2>Today's practical challenge</h2>
-    <div id="challenge"></div>
-    <label class="note-label" for="myNotes">My learning notes</label>
-    <textarea id="myNotes" placeholder="Write what you learned, your own example, or questions to revisit..."></textarea>
-    <button class="secondary" id="saveNotes">Save my notes</button>
-    <p class="privacy-note" id="notesPrivacy">Your notes are saved only in this browser on this device. They are not uploaded or stored online.</p>
+    <div class="eyebrow">APPLY WHAT YOU LEARNED</div><h2>Three practical application sections</h2>
+    <div class="apply-module"><h3>01 · Everyday conversation practice</h3><p>Start a three-minute conversation with a friend or family member. Open politely, ask two open questions, listen without interrupting and close naturally.</p><ul><li>Topic: a favourite place, film or weekend plan</li><li>Use: “Tell me more”, “What happened next?” and “That sounds interesting.”</li><li>Goal: balance speaking and listening</li></ul></div>
+    <div class="apply-module"><h3>02 · Phone call and message practice</h3><p>Role-play a phone call to book or change an appointment. Then write a short WhatsApp message confirming the date and time.</p><ul><li>Start with a greeting and your name</li><li>Explain the purpose clearly</li><li>Repeat important details to confirm</li><li>Close with a polite thank-you</li></ul></div>
+    <div class="apply-module"><h3>03 · Explain, respond and reflect</h3><p>Record a two-minute explanation of a real event or a simple process. Then practise one respectful I-statement for a situation where you need to express a concern or say no.</p><ul><li>Organise your explanation: first, then, finally</li><li>Use calm, clear and respectful language</li><li>Listen to your recording and note one strength and one improvement</li></ul></div>
+    <div id="challenge" class="privacy-note"></div>
   </div>
   <div class="practice-card quiz-card">
     <div class="eyebrow">CHECK YOUR UNDERSTANDING</div><h2>Final knowledge test</h2>
@@ -76,13 +75,39 @@
 
 
 <section class="finish-card" id="finishCard">
-  <div class="finish-icon">🏆</div><div><div class="eyebrow">DAILY ACHIEVEMENT</div><h2>Complete today's topic &amp; get your certificate</h2><p>Complete all five sections and score at least 80% in the final assessment to unlock your digital certificate.</p></div>
-  <button class="primary" id="finishBtn">Complete today's topic</button>
+  <div class="finish-icon">🏆</div><div><div class="eyebrow">WEEKLY ACHIEVEMENT</div><h2>Complete this week's topic &amp; get your certificate</h2><p>Complete all ten sections and score at least 80% in the final assessment to unlock your digital certificate.</p></div>
+  <button class="primary" id="finishBtn">Complete this week's topic</button>
   <div class="certificate-panel" id="certificatePanel" hidden><p id="certificatePrompt">Your topic is complete! Generate your digital certificate.</p><button class="primary" id="showCertificateForm">Generate certificate</button><div id="certificateForm" hidden><label class="note-label" for="certificateName">Complete name (as it should appear)</label><input class="learner-input" id="certificateName" type="text" placeholder="Enter your complete name" autocomplete="name" maxlength="90"><button class="primary" id="downloadCertificate">Generate &amp; download certificate ↓</button></div><p class="privacy-note" id="certificatePrivacy">Certificates are generated in your browser. The app does not upload or store them online; the downloaded file stays on your device.</p></div>
 </section>
-<section class="next-info"><b>Tomorrow's learning</b><p>When the date changes, your next topic will unlock automatically. You focus on today's topic—no distracting course catalogue.</p></section>
+<section class="next-info"><b>Next week's learning</b><p>Your weekly learning progress stays available throughout the week on this device. A new topic cycle begins next week.</p></section>
 </main>
-<nav class="bottom-nav"><a href="#top" class="active"><span>⌂</span>Today</a><a href="#lessonArea"><span>▤</span>Learn</a><a href="#practice"><span>✎</span>Practise</a><button id="resetBtn"><span>↻</span>Reset day</button></nav>
+
+<footer class="social-footer" aria-label="AdiInnovation support and social links">
+  <div class="social-group">
+    <strong>Need help?</strong>
+    <a class="social-icon whatsapp" href="https://wa.me/918589900277?text=Hello%20AdiInnovation%2C%20I%20need%20help." target="_blank" rel="noopener noreferrer" aria-label="WhatsApp help" title="WhatsApp help">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 3.5A11.8 11.8 0 0 0 12.1 0C5.6 0 .3 5.3.3 11.8c0 2.1.6 4.1 1.6 5.9L.2 24l6.5-1.7a11.8 11.8 0 0 0 5.4 1.3h.1c6.5 0 11.8-5.3 11.8-11.8 0-3.1-1.2-6-3.5-8.3ZM12.2 21.6a9.8 9.8 0 0 1-5-1.4l-.4-.2-3.9 1 1-3.8-.3-.4a9.7 9.7 0 1 1 8.6 4.8Zm5.4-7.3c-.3-.2-1.7-.8-2-.9-.3-.1-.5-.2-.7.2-.2.3-.8.9-.9 1.1-.2.2-.3.2-.6.1-.3-.1-1.2-.4-2.3-1.4-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.5.1-.6l.5-.6c.2-.2.2-.3.3-.5.1-.1 0-.4 0-.5-.1-.2-.7-1.6-1-2.2-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.4s1 2.8 1.1 3c.1.2 2 3.1 4.8 4.3.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.6-.1 1.7-.7 1.9-1.3.2-.6.2-1.1.2-1.3-.1-.1-.3-.2-.6-.4Z"/></svg>
+    </a>
+  </div>
+  <div class="social-group">
+    <strong>Follow us</strong>
+    <div class="social-icons">
+      <a class="social-icon instagram" href="https://www.instagram.com/adiinnovationds/" target="_blank" rel="noopener noreferrer" aria-label="Follow AdiInnovation on Instagram" title="Instagram">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.7" r=".8" class="solid-dot"/></svg>
+      </a>
+      <a class="social-icon youtube" href="https://www.youtube.com/@adiinnovation" target="_blank" rel="noopener noreferrer" aria-label="Follow AdiInnovation on YouTube" title="YouTube">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.6 12 3.6 12 3.6s-7.5 0-9.4.5A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8ZM9.6 15.7V8.3l6.3 3.7-6.3 3.7Z"/></svg>
+      </a>
+    </div>
+  </div>
+  <div class="social-group">
+    <strong>Visit website</strong>
+    <a class="social-icon website" href="https://www.adiinnovation.com/" target="_blank" rel="noopener noreferrer" aria-label="Visit AdiInnovation website" title="Website">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9.2"/><path d="M2.8 12h18.4M12 2.8a15 15 0 0 1 0 18.4M12 2.8a15 15 0 0 0 0 18.4"/></svg>
+    </a>
+  </div>
+</footer>
+<nav class="bottom-nav"><a href="#top" class="active"><span>⌂</span>This Week</a><a href="#lessonArea"><span>▤</span>Learn</a><a href="#practice"><span>✎</span>Practise</a><button id="resetBtn"><span>↻</span>Reset week</button></nav>
 <div class="toast" id="toast"></div>
 </div>
 <script src="app.js"></script>
