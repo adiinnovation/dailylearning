@@ -14,7 +14,7 @@ CERTIFICATE
 - No place, physical signature, WhatsApp submission, or server account is required.
 
 OTHER FEATURES
-- One focused topic per day, practical challenge, notes, quiz, learning games, progress tracking, and PWA support.
+- Today’s focused topic: Knowledge in Artificial Intelligence & Generative AI. Includes five lessons, practical challenge, notes, final quiz, learning games, progress tracking, and PWA support.
 - Learning progress is stored locally in the browser on the device.
 - Audio uses the browser's built-in speech synthesis. Malayalam audio requires a Malayalam (ml-IN) voice installed/enabled on the device.
 - No YouTube/video section is included.
