@@ -48,3 +48,12 @@ https://www.youtube.com/watch?v=pKYQR9npunU
 To replace it, edit the data-video-url attribute on #topicVideoSection in index.html.
 
 YouTube embed troubleshooting: the player uses youtube.com/embed with strict-origin-when-cross-origin referrer policy to help prevent YouTube Error 153. A Watch on YouTube fallback link is displayed beneath the vertical player. Host the app on HTTPS (for example GitHub Pages or Vercel); opening the HTML directly as a file may not provide a normal HTTP referrer.
+
+
+Right-side floating quick navigation
+- Your complete learning path
+- Play · Practise · Remember (learning games)
+- Learn · Apply · Check (practical activities)
+- Check your understanding (current section quiz)
+- Weekly achievement (certificate area)
+The navigation stays visible on desktop and collapses to a small Quick menu button on mobile.

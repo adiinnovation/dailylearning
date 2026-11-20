@@ -29,7 +29,7 @@
   <div class="progress-label"><span id="progressText">0 of 10 sections completed</span><span id="progressPercent">0%</span></div>
   <button class="primary wide" id="beginBtn">Start this week's topic <span>→</span></button>
 </section>
-<section class="section-head"><div><div class="eyebrow">YOUR COMPLETE LEARNING PATH</div><h2>This week's study plan</h2></div><span class="time-chip">140 MINUTES · THIS WEEK</span></section>
+<section class="section-head" id="learningPath"><div><div class="eyebrow">YOUR COMPLETE LEARNING PATH</div><h2>This week's study plan</h2></div><span class="time-chip">140 MINUTES · THIS WEEK</span></section>
 <div class="steps" id="stepList"></div>
 <section class="lesson-area" id="lessonArea">
   <div class="lesson-head"><div><div class="eyebrow" id="sectionCounter">SECTION 1 OF 10</div><h2 id="sectionTitle">Understand the concept</h2></div><span class="section-icon" id="sectionIcon">01</span></div>
@@ -41,10 +41,10 @@
 
 
 <!-- INSTAGRAM VIDEO: replace data-video-url with an Instagram Reel/Post URL, or a direct MP4/WebM video URL. -->
-<!--<section class="video-learning" id="topicVideoSection" data-video-url="https://www.instagram.com/reel/Df6a_Tchcxl/">
+<section class="video-learning" id="topicVideoSection" data-video-url="https://www.instagram.com/reel/Df6a_Tchcxl/">
   <div class="section-head"><div><div class="eyebrow">WATCH · LEARN · PRACTISE</div><h2 id="topicVideoTitle">Weekly topic video</h2></div><span class="time-chip">9:16 VIDEO</span></div>
   <div class="video-portrait" id="topicVideoPlayer"><div class="video-empty">Loading video…</div></div>
-</section>-->
+</section>
 
 <section class="games-area" id="learningGames">
   <div class="section-head"><div><div class="eyebrow">PLAY · PRACTISE · REMEMBER</div><h2>Learning games</h2></div><span class="time-chip">5–10 MIN</span></div>
@@ -63,16 +63,16 @@
     <div class="game-actions"><button class="secondary" id="gameReset">Restart game</button><button class="primary" id="gameNext" hidden>Next question →</button></div>
   </div>
 </section>
-<section class="section-head apply-check-heading"><div><div class="eyebrow">LEARN · APPLY · CHECK</div><h2>Apply what you learned and check your understanding</h2></div></section>
+<section class="section-head apply-check-heading" id="learnApplyCheck"><div><div class="eyebrow">LEARN · APPLY · CHECK</div><h2>Apply what you learned and check your understanding</h2></div></section>
 <section class="practice-grid" id="practice">
-  <div class="practice-card">
+  <div class="practice-card" id="applyActivities">
     <div class="eyebrow">APPLY WHAT YOU LEARNED</div><h2>Three practical application sections</h2>
     <div class="apply-module"><h3>01 · Everyday conversation practice</h3><p>Start a three-minute conversation with a friend or family member. Open politely, ask two open questions, listen without interrupting and close naturally.</p><ul><li>Topic: a favourite place, film or weekend plan</li><li>Use: “Tell me more”, “What happened next?” and “That sounds interesting.”</li><li>Goal: balance speaking and listening</li></ul></div>
     <div class="apply-module"><h3>02 · Phone call and message practice</h3><p>Role-play a phone call to book or change an appointment. Then write a short WhatsApp message confirming the date and time.</p><ul><li>Start with a greeting and your name</li><li>Explain the purpose clearly</li><li>Repeat important details to confirm</li><li>Close with a polite thank-you</li></ul></div>
     <div class="apply-module"><h3>03 · Explain, respond and reflect</h3><p>Record a two-minute explanation of a real event or a simple process. Then practise one respectful I-statement for a situation where you need to express a concern or say no.</p><ul><li>Organise your explanation: first, then, finally</li><li>Use calm, clear and respectful language</li><li>Listen to your recording and note one strength and one improvement</li></ul></div>
     <div id="challenge" class="privacy-note"></div>
   </div>
-  <div class="practice-card quiz-card">
+  <div class="practice-card quiz-card" id="checkUnderstanding">
     <div class="eyebrow">CHECK YOUR UNDERSTANDING</div><h2>Final knowledge test</h2>
     <div id="quiz"></div>
     <div id="quizResult" class="quiz-result"></div>
@@ -110,6 +110,17 @@
     <div class="social-icons"><a class="social-icon website" href="https://www.adiinnovation.com/" target="_blank" rel="noopener noreferrer" aria-label="Visit AdiInnovation website" title="Website"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9.2"/><path d="M2.8 12h18.4M12 2.8a15 15 0 0 1 0 18.4M12 2.8a15 15 0 0 0 0 18.4"/></svg></a></div>
   </div>
 </footer>
+<aside class="floating-section-nav open" id="floatingSectionNav" aria-label="Quick section navigation">
+  <button class="floating-nav-toggle" id="floatingNavToggle" type="button" aria-expanded="true" aria-controls="floatingNavLinks"><span>☰</span><b>Quick menu</b><span class="floating-chevron">⌄</span></button>
+  <nav class="floating-nav-links" id="floatingNavLinks">
+    <a href="#learningPath"><span>📚</span><b>Your complete learning path</b></a>
+    <a href="#learningGames"><span>🎮</span><b>Play · Practise · Remember</b></a>
+    <a href="#learnApplyCheck"><span>✍️</span><b>Learn · Apply · Check</b></a>
+    <a href="#sectionCheckPanel" data-section-check-link><span>✅</span><b>Check your understanding</b></a>
+    <a href="#finishCard"><span>🏆</span><b>Weekly achievement</b></a>
+  </nav>
+</aside>
+
 <nav class="bottom-nav"><a href="#top" class="active"><span>⌂</span>This Week</a><a href="#lessonArea"><span>▤</span>Learn</a><a href="#practice"><span>✎</span>Practise</a><button id="resetBtn"><span>↻</span>Reset week</button></nav>
 <div class="toast" id="toast"></div>
 <div class="gpay-overlay" id="gpayPopup" role="dialog" aria-modal="true" aria-labelledby="gpayTitle" hidden>

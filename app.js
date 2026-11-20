@@ -90,6 +90,11 @@ function speak(){
 }
 function applyLanguageUI(){
  const ml=currentLang()==='ml';
+ const quickNav=document.querySelectorAll('#floatingNavLinks a b');
+ const quickNavEn=['Your complete learning path','Play · Practise · Remember','Learn · Apply · Check','Check your understanding','Weekly achievement'];
+ const quickNavMl=['നിങ്ങളുടെ സമ്പൂർണ്ണ പഠനപാത','കളിക്കുക · പരിശീലിക്കുക · ഓർമ്മിക്കുക','പഠിക്കുക · പ്രയോഗിക്കുക · പരിശോധിക്കുക','നിങ്ങളുടെ അറിവ് പരിശോധിക്കുക','ആഴ്ചയിലെ നേട്ടം'];
+ quickNav.forEach((el,i)=>{if(quickNavEn[i])el.textContent=(ml?quickNavMl:quickNavEn)[i];});
+ const navToggle=document.querySelector('#floatingNavToggle b');if(navToggle)navToggle.textContent=ml?'വേഗത്തിലുള്ള മെനു':'Quick menu';
  const videoTitle=$('#topicVideoTitle'),videoIntro=$('#topicVideoIntro');if(videoTitle)videoTitle.textContent=ml?'ഈ ആഴ്ചയിലെ വീഡിയോ പാഠം':'Weekly topic video';if(videoIntro)videoIntro.textContent=ml?'പഠന ഗെയിമുകൾ ആരംഭിക്കുന്നതിന് മുമ്പ് വീഡിയോ കാണുക.':'Watch the lesson video before playing the learning games.';
  const cards=document.querySelectorAll('#practice .practice-card');
  if(cards[0]){
@@ -184,6 +189,25 @@ renderTopicVideo();
 const textSizeSelect=$('#textSizeSelect');
 function applyTextSize(value){const scale=['0.9','1','1.12'].includes(String(value))?String(value):'1';document.body.style.zoom=scale;if(textSizeSelect)textSizeSelect.value=scale;localStorage.setItem('adiinnovation-text-size',scale);}
 if(textSizeSelect){applyTextSize(localStorage.getItem('adiinnovation-text-size')||'1');textSizeSelect.addEventListener('change',()=>applyTextSize(textSizeSelect.value));}
+
+// Floating right-side quick navigation
+const floatingNav=document.getElementById('floatingSectionNav');
+const floatingToggle=document.getElementById('floatingNavToggle');
+if(floatingToggle&&floatingNav){
+ if(window.matchMedia('(max-width: 700px)').matches){floatingNav.classList.remove('open');floatingToggle.setAttribute('aria-expanded','false');}
+ floatingToggle.addEventListener('click',()=>{const open=floatingNav.classList.toggle('open');floatingToggle.setAttribute('aria-expanded',String(open));});
+ floatingNav.querySelectorAll('.floating-nav-links a').forEach(link=>link.addEventListener('click',ev=>{
+  const href=link.getAttribute('href');
+  if(link.hasAttribute('data-section-check-link')){
+   ev.preventDefault();
+   if(!document.getElementById('sectionCheckPanel')){showSection(section);}
+   document.getElementById('sectionCheckPanel')?.scrollIntoView({behavior:'smooth',block:'start'});
+  }else{
+   const target=document.querySelector(href);if(target){ev.preventDefault();target.scrollIntoView({behavior:'smooth',block:'start'});}
+  }
+  if(window.matchMedia('(max-width: 700px)').matches){floatingNav.classList.remove('open');floatingToggle.setAttribute('aria-expanded','false');}
+ }));
+}
 
 $('#resetBtn').onclick=()=>{if(confirm('Reset this week’s lesson progress and quiz?')){localStorage.removeItem(storeKey);localStorage.removeItem(storeKey+'-intro-popup-shown');data={done:[],quiz:null,finished:false,checks:{}};sectionCheckState={};$('#certificatePanel').hidden=true;$('#certificateForm').hidden=true;$('#certificateName').value='';answers={};$('#quizResult').textContent='';renderQuiz();showSection(0);renderProgress();toast('This week’s topic has been reset.');}};
 $('#themeBtn').onclick=()=>{document.body.classList.toggle('dark');localStorage.setItem('ss-dark',document.body.classList.contains('dark'));};if(localStorage.getItem('ss-dark')==='true')document.body.classList.add('dark');

@@ -172,3 +172,16 @@
 .video-portrait .instagram-media{width:100%!important;min-width:0!important;max-width:100%!important;margin:0 auto!important;border:0!important;border-radius:12px!important;box-shadow:none!important}
 .video-portrait .instagram-media iframe{width:100%!important;max-width:100%!important;height:100%!important;min-height:100%!important;border:0!important}
 .video-portrait:has(.instagram-media){background:#fff;align-items:start}
+
+/* Right-side floating quick navigation for the five main learning areas */
+.floating-section-nav{position:fixed;right:max(12px,calc((100vw - 1120px)/2));top:45%;transform:translateY(-50%);z-index:7;width:190px;border:1px solid var(--line);border-radius:15px;background:color-mix(in srgb,var(--card) 94%,transparent);box-shadow:0 12px 34px rgba(20,25,45,.16);backdrop-filter:blur(12px);overflow:hidden}
+.floating-nav-toggle{width:100%;display:flex;align-items:center;gap:8px;padding:11px 12px;border:0;background:var(--soft);color:var(--ink);font:800 11px 'DM Sans';text-align:left;cursor:pointer}
+.floating-nav-toggle>span:first-child{font-size:15px}.floating-nav-toggle b{flex:1}.floating-chevron{font-size:16px;transition:transform .2s ease}
+.floating-section-nav.open .floating-chevron{transform:rotate(180deg)}
+.floating-nav-links{display:grid;gap:3px;padding:7px}
+.floating-nav-links a{display:flex;align-items:center;gap:8px;padding:9px 8px;border-radius:9px;color:var(--ink);text-decoration:none;font-size:10px;line-height:1.3;transition:background .15s ease,color .15s ease}
+.floating-nav-links a span{width:22px;flex:0 0 22px;text-align:center;font-size:14px}
+.floating-nav-links a b{font-weight:700}.floating-nav-links a:hover,.floating-nav-links a:focus-visible{background:var(--soft);color:#7046b8;outline:none}
+@media(max-width:700px){.floating-section-nav{right:8px;top:auto;bottom:78px;transform:none;width:min(190px,calc(100vw - 24px));border-radius:13px}.floating-section-nav:not(.open) .floating-nav-links{display:none}.floating-nav-toggle{padding:10px 11px}.floating-nav-links a{padding:10px 8px;font-size:11px}}
+@media(min-width:701px){.floating-section-nav:not(.open) .floating-nav-links{display:none}}
+#learningPath,#learningGames,#learnApplyCheck,#applyActivities,#checkUnderstanding,#finishCard,#sectionCheckPanel{scroll-margin-top:24px}
