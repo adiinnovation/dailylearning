@@ -96,8 +96,8 @@
 #certificatePrivacy { flex-basis:100%; }
 
 /* Weekly learning footer and social contact icons */
-.social-footer{margin:26px 16px 92px;padding:18px 16px;border:1px solid var(--line);border-radius:16px;background:var(--card);display:flex;align-items:center;justify-content:space-between;gap:14px}
-.social-group{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:9px;min-width:0}
+.social-footer{margin:26px 16px 92px;padding:18px 16px;border:1px solid var(--line);border-radius:16px;background:var(--card);display:flex;align-items:center;justify-content:space-around;gap:18px;flex-wrap:nowrap}
+.social-group{display:flex;flex-direction:row;align-items:center;justify-content:center;gap:10px;min-width:0;white-space:nowrap}
 .social-group>strong{font-size:11px;color:var(--ink);white-space:nowrap}
 .social-icons{display:flex;align-items:center;gap:9px}
 .social-icon{width:34px;height:34px;display:grid;place-items:center;border-radius:50%;background:var(--soft);color:var(--ink);transition:transform .18s ease,background .18s ease}
@@ -107,7 +107,7 @@
 .social-icon.instagram{color:#c13584}.social-icon.instagram svg .solid-dot{fill:currentColor;stroke:none}
 .social-icon.youtube{color:#fff;background:#e62117}
 .social-icon.website{color:#4d61c8}
-@media(max-width:520px){.social-footer{margin:22px 10px 92px;padding:14px 10px;gap:8px}.social-group{gap:7px}.social-group>strong{font-size:10px}.social-icons{gap:7px}.social-icon{width:31px;height:31px}}
+@media(max-width:520px){.social-footer{margin:22px 10px 92px;padding:12px 8px;gap:10px;justify-content:space-between}.social-group{flex-direction:column;gap:6px}.social-group>strong{font-size:9px}.social-icons{gap:6px}.social-icon{width:30px;height:30px}.gpay-mark{font-size:10px}}
 
 /* Ten-section learning path and section-level checks */
 .section-check-panel{margin:24px 0 6px;padding:18px;border:1px solid var(--line);border-radius:16px;background:var(--soft)}
@@ -116,3 +116,44 @@
 .section-check-answer{border:1px solid var(--line);border-radius:12px;padding:12px;background:var(--card);color:var(--ink);font:inherit;text-align:left;cursor:pointer;min-height:48px}
 .section-check-answer:disabled{opacity:1}.section-check-answer.correct{background:#eaf7f0;border-color:#21865b;color:#17623f}.section-check-answer.wrong{background:#fff0f0;border-color:#c24b4b;color:#9c3030}
 .apply-module{padding:14px 0;border-top:1px solid var(--line)}.apply-module h3{font-size:1rem;margin:0 0 7px}.apply-module p,.apply-module li{font-size:.9rem;line-height:1.6;color:var(--muted)}.apply-module ul{padding-left:20px}
+
+
+/* Optional contribution popup: dismissible and never blocks course access */
+.support-overlay{position:fixed;inset:0;z-index:9999;background:rgba(9,14,29,.72);display:grid;place-items:center;padding:16px;overflow-y:auto;opacity:0;transition:opacity .2s ease}
+.support-overlay[hidden]{display:none}.support-overlay.visible{opacity:1}
+.support-modal{position:relative;width:min(100%,480px);max-height:min(92vh,760px);overflow:auto;background:var(--card);color:var(--ink);border:1px solid var(--line);border-radius:22px;padding:28px 24px 22px;text-align:center;box-shadow:0 24px 80px rgba(0,0,0,.28)}
+.support-close{position:absolute;right:13px;top:10px;border:0;background:var(--soft);color:var(--ink);width:34px;height:34px;border-radius:50%;font-size:24px;cursor:pointer}
+.support-heart{width:48px;height:48px;margin:0 auto 12px;border-radius:15px;display:grid;place-items:center;background:#fff0f0;color:#e32935;font-size:25px}
+.support-modal h2{font-size:1.55rem;margin:8px 0 10px}.support-modal p{font-size:.9rem;line-height:1.6;color:var(--muted)}.support-modal .brand-v{color:#e32935}
+.support-amount{display:flex;align-items:center;justify-content:center;gap:8px;margin:16px 0;padding:12px;border-radius:12px;background:var(--soft);font-size:.9rem}.support-amount b{font-size:1.3rem;color:var(--ink)}
+.support-small{font-size:.78rem!important}.support-pay{display:grid;grid-template-columns:1fr auto;align-items:center;gap:8px;margin:16px 0;padding:14px;border:1px dashed var(--line);border-radius:14px;text-align:left}.support-pay span{font-size:.75rem;color:var(--muted)}.support-pay strong{font-size:1rem;grid-column:1}.support-pay button{grid-column:2;grid-row:1/3;font-size:.75rem;padding:9px 12px}
+.support-whatsapp{display:block;text-decoration:none;margin-top:14px;padding:13px;border-radius:12px;background:#20a866;color:white;font-weight:800}.support-later{border:0;background:transparent;color:var(--muted);padding:12px 16px;margin-top:5px;font:inherit;font-size:.86rem;cursor:pointer;text-decoration:underline}.support-thanks{margin-bottom:0;font-size:.78rem!important}
+
+/* Clickable GPay support link below the brand wordmark */
+.brand>div{display:flex;flex-direction:column;align-items:flex-start}
+.gpay-brand-trigger{display:inline-flex;align-items:center;gap:6px;margin-top:5px;padding:3px 7px;border:1px solid var(--line);border-radius:7px;background:var(--card);color:var(--muted);font:700 9px 'DM Sans';cursor:pointer}
+.gpay-brand-trigger:hover{border-color:#4285f4;background:var(--soft)}
+.gpay-mark{display:inline-flex;align-items:center;gap:1px;font:800 13px Arial,sans-serif;letter-spacing:-.7px}
+.gpay-mark i{font-style:normal;background:conic-gradient(from -45deg,#4285f4 0 25%,#34a853 25% 48%,#fbbc05 48% 70%,#ea4335 70% 86%,#4285f4 86%);background-clip:text;-webkit-background-clip:text;color:transparent}
+.gpay-mark b{font-weight:800;color:#5f6368!important}
+.gpay-overlay{position:fixed;inset:0;z-index:10001;background:rgba(9,14,29,.68);display:grid;place-items:center;padding:16px}
+.gpay-overlay[hidden]{display:none}
+.gpay-modal{position:relative;width:min(100%,370px);background:var(--card);color:var(--ink);border:1px solid var(--line);border-radius:20px;padding:28px 22px 20px;text-align:center;box-shadow:0 24px 80px rgba(0,0,0,.3)}
+.gpay-modal .support-close{top:10px;right:10px}
+.gpay-large{font-size:27px;justify-content:center;margin:0 auto 12px}
+.gpay-large b{font-size:27px!important}
+.gpay-modal h2{font-size:20px;margin:8px 0}
+.gpay-modal p{font-size:12px;line-height:1.6;color:var(--muted)}
+.gpay-number-card{display:grid;gap:9px;margin:17px 0;padding:15px;border:1px dashed var(--line);border-radius:13px;background:var(--soft)}
+.gpay-number-card span{font-size:10px;color:var(--muted)}
+.gpay-number-card strong{font-size:21px;letter-spacing:.4px}
+.gpay-number-card button{width:100%}
+.gpay-modal>small,.gpay-note{font-size:10px;color:var(--muted)}
+@media(max-width:560px){.brand small{letter-spacing:1px}.topbar{align-items:center}}
+
+/* GPay shortcut sits beside WhatsApp in the Need help footer group. */
+.social-icon.gpay-social{border:1px solid #e2e5eb;background:#fff;color:#5f6368;cursor:pointer;padding:0;font:inherit}
+.social-icon.gpay-social .gpay-mark{font-size:11px;letter-spacing:-.65px}
+.social-icon.gpay-social:hover{background:#f7f9fc;border-color:#4285f4}
+
+.support-gpay-hint{margin:16px 0;padding:13px 15px;border-radius:13px;background:var(--soft);font-size:.88rem;line-height:1.55;color:var(--muted)}.support-gpay-hint b{color:var(--ink)}

@@ -31,3 +31,7 @@ The current topic is Communication Skills & Spoken English (80-minute learning p
 
 
 UPDATED COURSE: Communication Skills & Spoken English now contains 10 detailed learning sections. Each section includes a 10-question understanding check (100 section questions total). The Apply What You Learned area contains three practical application modules: everyday conversations, phone calls/messages, and explaining/responding/reflecting.
+
+
+Optional AdiinnoVation support popup
+A dismissible support message appears when the app is first opened and again after successful course completion. Contributions are voluntary; learners can complete the entire course without paying. The support popup appears when the topic opens and after successful course completion. It does not display payment details or a WhatsApp payment button. It tells learners that GPay details are available through the GPay icon in the footer, where the number can be viewed and copied.

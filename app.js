@@ -18,7 +18,7 @@ function renderPlan(){
  document.querySelectorAll('[data-section]').forEach(b=>b.onclick=()=>showSection(+b.dataset.section));
 }
 function currentLang(){return $('#languageSelect')?.value||'en';}
-let sectionCheckState={};
+let sectionCheckState=data.checks||{};
 function renderSectionCheck(){
  const bank=TOPIC.sectionChecks[section]||[]; if(!bank.length)return;
  const host=document.createElement('div');host.className='section-check-panel';host.id='sectionCheckPanel';
@@ -29,12 +29,20 @@ function renderSectionCheck(){
 function renderSectionCheckQuestion(){
  const bank=TOPIC.sectionChecks[section]||[],state=sectionCheckState[section]||{};sectionCheckState[section]=state;
  const qIndex=Object.keys(state).length,root=$('#sectionCheckQuestion');if(!root)return;
- if(qIndex>=bank.length){const score=bank.reduce((n,q,i)=>n+(state[i]===q[2]?1:0),0);$('#sectionCheckProgress').textContent='Completed · 10 of 10';root.innerHTML=`<div class="callout"><b>Section check complete</b><p>Your score: ${score}/10 (${score*10}%). ${score>=8?'Excellent understanding!':'Review the lesson and repeat this check to strengthen your understanding.'}</p><button class="secondary" id="retrySectionCheck">Try again</button></div>`;$('#retrySectionCheck').onclick=()=>{sectionCheckState[section]={};renderSectionCheckQuestion();};return;}
+ if(qIndex>=bank.length){const score=bank.reduce((n,q,i)=>n+(state[i]===q[2]?1:0),0);$('#sectionCheckProgress').textContent='Completed · 10 of 10';root.innerHTML=`<div class="callout"><b>Section check complete</b><p>Your score: ${score}/10 (${score*10}%). ${score>=8?'Excellent understanding!':'Review the lesson and repeat this check to strengthen your understanding.'}</p><button class="secondary" id="retrySectionCheck">Try again</button><button class="primary" id="nextSectionFromCheck">${section===TOPIC.sections.length-1?'Finish →':'Next →'}</button></div>`;$('#retrySectionCheck').onclick=()=>{sectionCheckState[section]={};data.checks=sectionCheckState;save();renderSectionCheckQuestion();};$('#nextSectionFromCheck').onclick=()=>completeCurrentSection(true);return;}
  const q=bank[qIndex];$('#sectionCheckProgress').textContent=`Question ${qIndex+1} of 10`;
  root.innerHTML=`<div class="quiz-question">${qIndex+1}. ${q[0]}</div><div class="game-options">${q[1].map((v,i)=>`<button class="section-check-answer" data-choice="${i}">${String.fromCharCode(65+i)}. ${v}</button>`).join('')}</div>`;
- root.querySelectorAll('button').forEach(b=>b.onclick=()=>{const chosen=+b.dataset.choice;state[qIndex]=chosen;root.querySelectorAll('button').forEach(x=>{x.disabled=true;if(+x.dataset.choice===q[2])x.classList.add('correct');else if(+x.dataset.choice===chosen)x.classList.add('wrong');});const feedback=document.createElement('p');feedback.className='quiz-result';feedback.textContent=(chosen===q[2]?'Correct. ':'Review: ')+q[3];root.append(feedback);const next=document.createElement('button');next.className='primary';next.textContent=qIndex===9?'See my result':'Next question →';next.onclick=renderSectionCheckQuestion;root.append(next);});
+ root.querySelectorAll('button').forEach(b=>b.onclick=()=>{const chosen=+b.dataset.choice;state[qIndex]=chosen;data.checks=sectionCheckState;save();root.querySelectorAll('button').forEach(x=>{x.disabled=true;if(+x.dataset.choice===q[2])x.classList.add('correct');else if(+x.dataset.choice===chosen)x.classList.add('wrong');});const feedback=document.createElement('p');feedback.className='quiz-result';feedback.textContent=(chosen===q[2]?'Correct. ':'Review: ')+q[3];root.append(feedback);const next=document.createElement('button');next.className='primary';next.textContent=qIndex===9?'View result →':'Next question →';next.onclick=renderSectionCheckQuestion;root.append(next);});
 }
-function showSection(i){section=Math.max(0,Math.min(i,TOPIC.sections.length-1));let s=TOPIC.sections[section];const ml=currentLang()==='ml';$('#sectionCounter').textContent=ml?`വിഭാഗം ${section+1} / ${TOPIC.sections.length}`:`SECTION ${section+1} OF ${TOPIC.sections.length}`;$('#sectionTitle').textContent=(ml?(MALAYALAM_TITLES[section]||s.title):s.title);$('#sectionIcon').textContent=String(section+1).padStart(2,'0');$('#lessonBody').innerHTML=(ml?(MALAYALAM_LESSONS[section]||s.body):s.body);renderSectionCheck();$('#prevBtn').textContent=ml?'← മുമ്പത്തേത്':'← Previous';$('#nextBtn').textContent=ml?'അടുത്തത് →':'Next →';$('#doneBtn').textContent=data.done.includes(section)?(ml?'വിഭാഗം പൂർത്തിയായി ✓':'Section completed ✓'):(ml?'വിഭാഗം പൂർത്തിയാക്കുക ✓':'Complete section ✓');$('#doneBtn').classList.toggle('secondary',data.done.includes(section));renderPlan();speechSynthesis?.cancel();$('#audioBtn').textContent=ml?'▶ കേൾക്കുക':'▶ Listen';}
+function showSection(i){section=Math.max(0,Math.min(i,TOPIC.sections.length-1));let s=TOPIC.sections[section];const ml=currentLang()==='ml';$('#sectionCounter').textContent=ml?`വിഭാഗം ${section+1} / ${TOPIC.sections.length}`:`SECTION ${section+1} OF ${TOPIC.sections.length}`;$('#sectionTitle').textContent=(ml?(MALAYALAM_TITLES[section]||s.title):s.title);$('#sectionIcon').textContent=String(section+1).padStart(2,'0');$('#lessonBody').innerHTML=(ml?(MALAYALAM_LESSONS[section]||s.body):s.body);renderSectionCheck();$('#prevBtn').textContent=ml?'← മുമ്പത്തേത്':'← Previous';$('#nextBtn').textContent=section===TOPIC.sections.length-1?(ml?'പൂർത്തിയാക്കുക →':'Finish →'):(ml?'അടുത്തത് →':'Next →');$('#doneBtn').textContent=data.done.includes(section)?(ml?'വിഭാഗം പൂർത്തിയായി ✓':'Section completed ✓'):(ml?'വിഭാഗം പൂർത്തിയാക്കുക ✓':'Complete section ✓');$('#doneBtn').classList.toggle('secondary',data.done.includes(section));renderPlan();speechSynthesis?.cancel();$('#audioBtn').textContent=ml?'▶ കേൾക്കുക':'▶ Listen';}
+function isSectionCheckComplete(index=section){return Object.keys(sectionCheckState[index]||{}).length===10;}
+function completeCurrentSection(advance=false){
+ if(!isSectionCheckComplete()){toast(currentLang()==='ml'?'അടുത്ത വിഭാഗത്തിലേക്ക് പോകുന്നതിന് മുമ്പ് 10 ചോദ്യങ്ങളും പൂർത്തിയാക്കുക.':'Complete all 10 understanding-check questions before moving to the next section.');$('#sectionCheckPanel')?.scrollIntoView({behavior:'smooth',block:'center'});return;}
+ const newlyCompleted=!data.done.includes(section);if(newlyCompleted){data.done.push(section);save();}
+ const finishedIndex=section;
+ if(advance){if(finishedIndex<TOPIC.sections.length-1){showSection(finishedIndex+1);}else{$('#finishCard').scrollIntoView({behavior:'smooth'});}}
+ if(newlyCompleted){toast(currentLang()==='ml'?'വിഭാഗം വിജയകരമായി പൂർത്തിയാക്കി!':'Section completed successfully!');}
+}
 function renderProgress(){let n=data.done.length,total=TOPIC.sections.length,p=Math.round(n/total*100);$('#progressBar').style.width=p+'%';$('#progressText').textContent=currentLang()==='ml'?`${n} / ${total} വിഭാഗങ്ങൾ പൂർത്തിയായി`:`${n} of ${total} sections completed`;$('#progressPercent').textContent=p+'%';$('#streak').textContent=currentLang()==='ml'?'🔥 '+getStreak()+' ആഴ്ച തുടർച്ച':'🔥 '+getStreak()+' week streak';}
 function getStreak(){let n=0,d=new Date();for(let i=0;i<104;i++){const info=weekInfo(d);const v=localStorage.getItem('adiinnovation-'+TOPIC.id+'-week-'+info.key);if(!v||!JSON.parse(v).finished)break;n++;d.setDate(d.getDate()-7);}return n;}
 function getQuizBank(){return currentLang()==='ml'?MALAYALAM_QUIZ:TOPIC.quiz;}
@@ -102,10 +110,10 @@ function applyLanguageUI(){
  if(finish){finish.querySelector('.eyebrow').textContent=ml?'ആഴ്ചയിലെ നേട്ടം':'WEEKLY ACHIEVEMENT';finish.querySelector('h2').textContent=ml?'ഈ ആഴ്ചയിലെ വിഷയം പൂർത്തിയാക്കി സർട്ടിഫിക്കറ്റ് നേടൂ':'Complete this week’s topic & get your certificate';finish.querySelector('p').textContent=ml?'അഞ്ച് വിഭാഗങ്ങളും പൂർത്തിയാക്കി അവസാന പരീക്ഷയിൽ കുറഞ്ഞത് 80% നേടുക. അപ്പോൾ നിങ്ങളുടെ ഡിജിറ്റൽ സർട്ടിഫിക്കറ്റ് ലഭിക്കും.':'Complete all ten sections and score at least 80% in the final assessment to unlock your digital certificate.';if(!data.finished)$('#finishBtn').textContent=ml?'ഈ ആഴ്ചയിലെ വിഷയം പൂർത്തിയാക്കുക':'Complete this week’s topic';$('#certificatePrompt').textContent=ml?'ഈ ആഴ്ചയിലെ വിഷയം പൂർത്തിയായി! നിങ്ങളുടെ ഡിജിറ്റൽ സർട്ടിഫിക്കറ്റ് തയ്യാറാക്കാം.':'Your weekly topic is complete! Generate your digital certificate.';$('#showCertificateForm').textContent=ml?'സർട്ടിഫിക്കറ്റ് തയ്യാറാക്കുക':'Generate certificate';$('#certificateName').placeholder=ml?'സർട്ടിഫിക്കറ്റിൽ കാണിക്കേണ്ട പൂർണ്ണ പേര് നൽകുക':'Enter your complete name';$('#downloadCertificate').textContent=ml?'സർട്ടിഫിക്കറ്റ് തയ്യാറാക്കി ഡൗൺലോഡ് ചെയ്യുക ↓':'Generate & download certificate ↓';}
 }
 $('#languageSelect').addEventListener('change',()=>{speechSynthesis?.cancel();answers={};data.quiz=null;save();showSection(section);$('#challenge').textContent=currentLang()==='ml'?MALAYALAM_CHALLENGE:TOPIC.challenge;applyLanguageUI();renderQuiz();$('#audioBtn').textContent=currentLang()==='ml'?'▶ കേൾക്കുക':'▶ Listen';selectGame(gameType);});$('#audioBtn').onclick=speak;$('#pauseBtn').onclick=()=>{if(speechSynthesis.speaking)speechSynthesis.paused?speechSynthesis.resume():speechSynthesis.pause()};$('#stopBtn').onclick=()=>{speechSynthesis.cancel();$('#audioBtn').textContent='▶ Listen'};
-$('#beginBtn').onclick=()=>$('#lessonArea').scrollIntoView({behavior:'smooth'});$('#prevBtn').onclick=()=>showSection(section-1);$('#nextBtn').onclick=()=>showSection(section+1);
-$('#doneBtn').onclick=()=>{if(!data.done.includes(section))data.done.push(section);save();showSection(section);toast('Section progress saved!');if(data.done.length===TOPIC.sections.length)$('#finishCard').scrollIntoView({behavior:'smooth'});};
+$('#beginBtn').onclick=()=>$('#lessonArea').scrollIntoView({behavior:'smooth'});$('#prevBtn').onclick=()=>showSection(section-1);$('#nextBtn').onclick=()=>completeCurrentSection(true);
+$('#doneBtn').onclick=()=>completeCurrentSection(false);
 $('#challenge').textContent=currentLang()==='ml'?MALAYALAM_CHALLENGE:TOPIC.challenge;
-$('#finishBtn').onclick=()=>{if(data.done.length!==TOPIC.sections.length){toast(currentLang()==='ml'?'ആദ്യം അഞ്ച് വിഭാഗങ്ങളും പൂർത്തിയാക്കുക.':'Complete all ten sections this week first.');return;}if(data.quiz===null||data.quiz<80){toast(currentLang()==='ml'?'സർട്ടിഫിക്കറ്റിന് കുറഞ്ഞത് 80% സ്കോർ നേടണം.':'Score at least 80% in the final assessment first.');return;}data.finished=true;save();$('#finishBtn').textContent=currentLang()==='ml'?'പൂർത്തിയായി ✓':'Completed ✓';$('#certificatePanel').hidden=false;toast(currentLang()==='ml'?'അഭിനന്ദനങ്ങൾ! ഇന്നത്തെ വിഷയം പൂർത്തിയായി.':'Congratulations! This week’s topic is complete. 🏆');};
+$('#finishBtn').onclick=()=>{if(data.done.length!==TOPIC.sections.length){toast(currentLang()==='ml'?'ആദ്യം പത്ത് വിഭാഗങ്ങളും പൂർത്തിയാക്കുക.':'Complete all ten sections first.');return;}if(data.quiz===null||data.quiz<80){toast(currentLang()==='ml'?'സർട്ടിഫിക്കറ്റിന് കുറഞ്ഞത് 80% സ്കോർ നേടണം.':'Score at least 80% in the final assessment first.');return;}const firstCompletion=!data.finished;data.finished=true;save();$('#finishBtn').textContent=currentLang()==='ml'?'പൂർത്തിയായി ✓':'Completed ✓';$('#certificatePanel').hidden=false;toast(currentLang()==='ml'?'അഭിനന്ദനങ്ങൾ! കോഴ്‌സ് പൂർത്തിയായി.':'Congratulations! You completed the course. 🏆');if(firstCompletion)showSupportPopup('complete');};
 $('#showCertificateForm').onclick=()=>{$('#certificateForm').hidden=false;$('#certificateName').focus();};
 $('#downloadCertificate').onclick=()=>{
  const name=$('#certificateName').value.trim();
@@ -126,12 +134,39 @@ $('#downloadCertificate').onclick=()=>{
 };
 function wrapCanvasText(ctx,text,cx,y,maxWidth,lineHeight){const words=text.split(' ');let line='',lines=[];for(const word of words){const test=line?line+' '+word:word;if(ctx.measureText(test).width>maxWidth&&line){lines.push(line);line=word;}else line=test;}if(line)lines.push(line);lines.forEach((ln,i)=>ctx.fillText(ln,cx,y+i*lineHeight));}
 
-$('#resetBtn').onclick=()=>{if(confirm('Reset this week’s lesson progress and quiz?')){localStorage.removeItem(storeKey);data={done:[],quiz:null,finished:false};$('#certificatePanel').hidden=true;$('#certificateForm').hidden=true;$('#certificateName').value='';answers={};$('#quizResult').textContent='';renderQuiz();showSection(0);renderProgress();toast('This week’s topic has been reset.');}};
+$('#resetBtn').onclick=()=>{if(confirm('Reset this week’s lesson progress and quiz?')){localStorage.removeItem(storeKey);data={done:[],quiz:null,finished:false,checks:{}};sectionCheckState={};$('#certificatePanel').hidden=true;$('#certificateForm').hidden=true;$('#certificateName').value='';answers={};$('#quizResult').textContent='';renderQuiz();showSection(0);renderProgress();toast('This week’s topic has been reset.');}};
 $('#themeBtn').onclick=()=>{document.body.classList.toggle('dark');localStorage.setItem('ss-dark',document.body.classList.contains('dark'));};if(localStorage.getItem('ss-dark')==='true')document.body.classList.add('dark');
 document.querySelectorAll('.bottom-nav a').forEach(a=>a.addEventListener('click',()=>{document.querySelectorAll('.bottom-nav a').forEach(x=>x.classList.remove('active'));a.classList.add('active')}));
 window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();deferredInstall=e;$('#installBtn').hidden=false;});$('#installBtn').onclick=async()=>{if(!deferredInstall)return;deferredInstall.prompt();await deferredInstall.userChoice;deferredInstall=null;$('#installBtn').hidden=true;};
 if('serviceWorker'in navigator && location.protocol.startsWith('http'))window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js').catch(()=>{}));
-renderPlan();applyLanguageUI();renderQuiz();showSection(0);renderProgress();if(data.finished){$('#finishBtn').textContent=currentLang()==='ml'?'പൂർത്തിയായി ✓':'Completed ✓';$('#certificatePanel').hidden=false;}
+renderPlan();applyLanguageUI();renderQuiz();showSection(0);renderProgress();if(data.finished){$('#finishBtn').textContent=currentLang()==='ml'?'പൂർത്തിയായി ✓':'Completed ✓';$('#certificatePanel').hidden=false;}const introPopupKey=storeKey+'-support-intro-shown';if(!localStorage.getItem(introPopupKey)){localStorage.setItem(introPopupKey,'1');showSupportPopup('intro');}
+
+
+// Support popup appears once at the start of the weekly topic and once after full course completion.
+function showSupportPopup(reason='intro'){
+ const popup=$('#supportPopup');if(!popup)return;
+ popup.dataset.reason=reason;popup.classList.add('visible');popup.hidden=false;
+ $('#supportTitle').textContent=reason==='complete'?(currentLang()==='ml'?'കോഴ്‌സ് വിജയകരമായി പൂർത്തിയാക്കി!':'You completed the course!'):(currentLang()==='ml'?'ഈ കോഴ്‌സ് ഇഷ്ടമായോ?':'Enjoying this course?');
+}
+function closeSupportPopup(){const popup=$('#supportPopup');popup.classList.remove('visible');popup.hidden=true;}
+$('#supportClose').onclick=closeSupportPopup;$('#supportLater').onclick=closeSupportPopup;
+$('#supportPopup').addEventListener('click',e=>{if(e.target===$('#supportPopup'))closeSupportPopup();});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!$('#supportPopup').hidden)closeSupportPopup();});
+
+// GPay shortcut directly below the AdiinnoVation logo.
+const gpayPopup=$('#gpayPopup');
+function openGpayPopup(){if(gpayPopup)gpayPopup.hidden=false;}
+function closeGpayPopup(){if(gpayPopup)gpayPopup.hidden=true;}
+$('#openGpay')?.addEventListener('click',openGpayPopup);
+$('#closeGpay')?.addEventListener('click',closeGpayPopup);
+$('#dismissGpay')?.addEventListener('click',closeGpayPopup);
+gpayPopup?.addEventListener('click',e=>{if(e.target===gpayPopup)closeGpayPopup();});
+$('#copyGpayNumber')?.addEventListener('click',async()=>{
+  const btn=$('#copyGpayNumber');
+  try{await navigator.clipboard.writeText('8589900277');btn.textContent='Copied ✓';}
+  catch(err){const field=document.createElement('textarea');field.value='8589900277';field.style.position='fixed';field.style.opacity='0';document.body.appendChild(field);field.select();try{document.execCommand('copy');btn.textContent='Copied ✓';}catch(e){btn.textContent='Copy manually: 8589900277';}field.remove();}
+});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&gpayPopup&&!gpayPopup.hidden)closeGpayPopup();});
 
 
 // Topic-linked mini games
