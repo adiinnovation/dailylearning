@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#11182b"><meta name="description" content="Build confidence in communication and spoken English every week.">
+<meta name="theme-color" content="#11182b"><meta name="description" content="Build confidence in communication and spoken English every week."><meta name="referrer" content="strict-origin-when-cross-origin">
 <link rel="manifest" href="manifest.json"><link rel="icon" href="icon.svg" type="image/svg+xml">
 <title>adiinnoVation | Communication Skills & Spoken English</title><link rel="stylesheet" href="style.css">
 </head>
@@ -10,7 +10,7 @@
 <div class="app">
 <header class="topbar">
   <div class="brand"><div><b>adiinno<span class="brand-v">V</span>ation</b><small>ONE WEEK · ONE COMPLETE TOPIC</small></div></div>
-  <div class="top-right"><label class="sr-only" for="languageSelect">Language</label><select id="languageSelect" class="top-language" aria-label="Choose language"><option value="en">English</option><option value="ml">മലയാളം</option></select><span class="streak" id="streak">🔥 0 week streak</span><button class="round-btn" id="installBtn" hidden title="Install app">＋</button><button class="round-btn" id="themeBtn" title="Toggle theme">◐</button></div>
+  <div class="top-right"><label class="sr-only" for="languageSelect">Language</label><select id="languageSelect" class="top-language" aria-label="Choose language"><option value="en">English</option><option value="ml">മലയാളം</option></select><label class="sr-only" for="textSizeSelect">Text size</label><select id="textSizeSelect" class="top-text-size" aria-label="Text size" title="Change text size"><option value="0.9">A−</option><option value="1" selected>A</option><option value="1.12">A+</option></select><span class="streak" id="streak">🔥 0 week streak</span><button class="round-btn" id="installBtn" hidden title="Install app">＋</button><button class="round-btn" id="themeBtn" title="Toggle theme">◐</button></div>
 </header>
 <main>
 <section class="welcome">
@@ -18,7 +18,7 @@
   <h1>One topic.<br><em>Complete mastery.</em></h1>
   <p>Explore one useful topic throughout the week. Learn, listen, practise and prove what you know at your own pace.</p>
 </section>
-<section class="today-card">
+<section class="today-card" id="weeklyTopicCard" role="button" tabindex="0" aria-label="Open this week’s learning topic" title="Click to open this week’s topic">
   <div class="today-top"><span class="today-pill">THIS WEEK'S COMPLETE TOPIC</span><span id="topicNumber">WEEK 01</span></div>
   <div class="topic-emoji" id="topicEmoji">📊</div>
   <div class="topic-kicker" id="topicCategory">COMMUNICATION & LANGUAGE SKILLS</div>
@@ -39,6 +39,12 @@
 </section>
 
 
+
+<!-- INSTAGRAM VIDEO: replace data-video-url with an Instagram Reel/Post URL, or a direct MP4/WebM video URL. -->
+<section class="video-learning" id="topicVideoSection" data-video-url="https://www.instagram.com/reel/Df6a_Tchcxl/">
+  <div class="section-head"><div><div class="eyebrow">WATCH · LEARN · PRACTISE</div><h2 id="topicVideoTitle">Weekly topic video</h2></div><span class="time-chip">9:16 VIDEO</span></div>
+  <div class="video-portrait" id="topicVideoPlayer"><div class="video-empty">Loading video…</div></div>
+</section>
 
 <section class="games-area" id="learningGames">
   <div class="section-head"><div><div class="eyebrow">PLAY · PRACTISE · REMEMBER</div><h2>Learning games</h2></div><span class="time-chip">5–10 MIN</span></div>
@@ -82,7 +88,7 @@
 <section class="next-info"><b>Next week's learning</b><p>Your weekly learning progress stays available throughout the week on this device. A new topic cycle begins next week.</p></section>
 </main>
 
-<footer class="social-footer" aria-label="adiinnovation support and social links">
+<footer class="social-footer" aria-label="AdiInnovation support and social links">
   <div class="social-group social-group-help">
     <strong>Need help?</strong>
     <div class="social-icons">
@@ -110,7 +116,7 @@
   <div class="gpay-modal">
     <button class="support-close" id="closeGpay" aria-label="Close GPay details">×</button>
     <div class="gpay-mark gpay-large" aria-hidden="true"><i>G</i><b>Pay</b></div>
-    <h2 id="gpayTitle">Support adiinnoVation Team</h2>
+    <h2 id="gpayTitle">Support AdiinnoVation</h2>
     <p>Thank you for helping us create more useful learning resources. Your contribution is completely voluntary.</p>
     <div class="gpay-number-card"><span>GPay / UPI mobile number</span><strong id="gpayNumber">+91 85899 00277</strong><button class="primary" id="copyGpayNumber" type="button">Copy number</button></div>
     <small>Suggested contribution: ₹200 or any amount you wish.</small>

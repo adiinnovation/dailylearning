@@ -19,7 +19,7 @@ OTHER FEATURES
 - No My Learning Notes or Save My Notes section is shown.
 - Footer groups: “Need help?” with WhatsApp icon only; “Follow us” with Instagram and YouTube icons; “Visit website” with website icon. The WhatsApp phone number is not displayed in the app.
 - Audio uses the browser's built-in speech synthesis. Malayalam audio requires a Malayalam (ml-IN) voice installed/enabled on the device.
-- No YouTube video-learning section is included; the YouTube icon in the footer links to the AdiInnovation channel.
+- The weekly video-learning section supports an official Instagram Reel embed and direct MP4/WebM video links. The YouTube icon in the footer still links to the AdiInnovation channel.
 
 NOTE
 This app is a front-end learning prototype. Weekly progress is stored in browser storage and is device/browser-specific. Clearing browser data may clear saved progress.
@@ -35,3 +35,16 @@ UPDATED COURSE: Communication Skills & Spoken English now contains 10 detailed l
 
 Optional AdiinnoVation support popup
 A dismissible support message appears when the app is first opened and again after successful course completion. Contributions are voluntary; learners can complete the entire course without paying. The support popup appears when the topic opens and after successful course completion. It does not display payment details or a WhatsApp payment button. It tells learners that GPay details are available through the GPay icon in the footer, where the number can be viewed and copied.
+
+
+NEW CUSTOMISATION OPTIONS
+- To change the weekly portrait video, open index.html and find the section with id="topicVideoSection". Paste an Instagram Reel URL or a direct MP4/WebM URL into data-video-url="". The player is displayed in a 9:16 portrait frame before PLAY · PRACTISE · REMEMBER. Instagram embeds require an internet connection and may depend on the Reel owner allowing embedding.
+- Learners can change the page display size using A− / A / A+ beside the language selector. Their choice is saved on that device.
+- The support popup appears on the first opening of the weekly topic, after each newly completed section, and after full course completion. It does not appear merely because the page is refreshed. GPay details open only from the footer GPay icon.
+- Selecting a study-plan item opens that exact section and scrolls directly to its lesson.
+SAMPLE VIDEO
+The weekly video section is pre-filled with a YouTube English conversation practice sample:
+https://www.youtube.com/watch?v=pKYQR9npunU
+To replace it, edit the data-video-url attribute on #topicVideoSection in index.html.
+
+YouTube embed troubleshooting: the player uses youtube.com/embed with strict-origin-when-cross-origin referrer policy to help prevent YouTube Error 153. A Watch on YouTube fallback link is displayed beneath the vertical player. Host the app on HTTPS (for example GitHub Pages or Vercel); opening the HTML directly as a file may not provide a normal HTTP referrer.
