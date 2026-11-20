@@ -1,4 +1,4 @@
-adiinnoVation Daily — Daily Learning App
+adiinnoVation — One Day · One Complete Topic
 
 HOW TO RUN
 1. Extract the ZIP file.
@@ -15,7 +15,8 @@ CERTIFICATE
 
 OTHER FEATURES
 - Today’s focused topic: Knowledge in Artificial Intelligence & Generative AI. Includes five lessons, practical challenge, notes, final quiz, learning games, progress tracking, and PWA support.
-- Learning progress is stored locally in the browser on the device.
+- Learning progress and notes are stored locally in this browser on this device only; they are not uploaded or stored online.
+- Certificates are generated in the browser and downloaded to the device. The app does not upload or store certificate files online.
 - Audio uses the browser's built-in speech synthesis. Malayalam audio requires a Malayalam (ml-IN) voice installed/enabled on the device.
 - No YouTube/video section is included.
 

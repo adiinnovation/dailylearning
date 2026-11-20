@@ -4,12 +4,12 @@
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#11182b"><meta name="description" content="One focused skill. One complete topic. Every day.">
 <link rel="manifest" href="manifest.json"><link rel="icon" href="icon.svg" type="image/svg+xml">
-<title>adiinnoVation Daily</title><link rel="stylesheet" href="style.css">
+<title>adiinnoVation | One Day · One Complete Topic</title><link rel="stylesheet" href="style.css">
 </head>
 <body>
 <div class="app">
 <header class="topbar">
-  <div class="brand"><div><b>adiinno<span class="brand-v">V</span>ation <span>Daily</span></b><small>ONE DAY · ONE COMPLETE TOPIC</small></div></div>
+  <div class="brand"><div><b>adiinno<span class="brand-v">V</span>ation</b><small>ONE DAY · ONE COMPLETE TOPIC</small></div></div>
   <div class="top-right"><label class="sr-only" for="languageSelect">Language</label><select id="languageSelect" class="top-language" aria-label="Choose language"><option value="en">English</option><option value="ml">മലയാളം</option></select><span class="streak" id="streak">🔥 0 day streak</span><button class="round-btn" id="installBtn" hidden title="Install app">＋</button><button class="round-btn" id="themeBtn" title="Toggle theme">◐</button></div>
 </header>
 <main>
@@ -24,7 +24,7 @@
   <div class="topic-kicker" id="topicCategory">DATA ANALYTICS</div>
   <h2 id="topicTitle">Knowledge in Artificial Intelligence &amp; Generative AI</h2>
   <p id="topicDesc">Understand KPIs, prepare data, create measures and build a meaningful dashboard.</p>
-  <div class="meta"><span>◷ <b id="duration">60</b> min learning plan</span><span>▣ Beginner to practical</span></div>
+  <div class="meta"><span>◷ <b id="duration">60</b>-minute learning plan</span><span>▣ Beginner-to-practical skills</span><span>🏆 Complete the lessons and download your certificate</span></div>
   <div class="progress-track"><div id="progressBar"></div></div>
   <div class="progress-label"><span id="progressText">0 of 5 sections completed</span><span id="progressPercent">0%</span></div>
   <button class="primary wide" id="beginBtn">Start today's topic <span>→</span></button>
@@ -65,6 +65,7 @@
     <label class="note-label" for="myNotes">My learning notes</label>
     <textarea id="myNotes" placeholder="Write what you learned, your own example, or questions to revisit..."></textarea>
     <button class="secondary" id="saveNotes">Save my notes</button>
+    <p class="privacy-note" id="notesPrivacy">Your notes are saved only in this browser on this device. They are not uploaded or stored online.</p>
   </div>
   <div class="practice-card quiz-card">
     <div class="eyebrow">CHECK YOUR UNDERSTANDING</div><h2>Final knowledge test</h2>
@@ -75,9 +76,9 @@
 
 
 <section class="finish-card" id="finishCard">
-  <div class="finish-icon">🏆</div><div><div class="eyebrow">DAILY ACHIEVEMENT</div><h2>Topic completed?</h2><p>Finish all five sections and pass the final quiz to complete today's topic.</p></div>
+  <div class="finish-icon">🏆</div><div><div class="eyebrow">DAILY ACHIEVEMENT</div><h2>Complete today's topic &amp; get your certificate</h2><p>Complete all five sections and score at least 80% in the final assessment to unlock your digital certificate.</p></div>
   <button class="primary" id="finishBtn">Complete today's topic</button>
-  <div class="certificate-panel" id="certificatePanel" hidden><p id="certificatePrompt">Your topic is complete! Generate your digital certificate.</p><button class="primary" id="showCertificateForm">Generate certificate</button><div id="certificateForm" hidden><label class="note-label" for="certificateName">Complete name (as it should appear)</label><input class="learner-input" id="certificateName" type="text" placeholder="Enter your complete name" autocomplete="name" maxlength="90"><button class="primary" id="downloadCertificate">Generate &amp; download certificate ↓</button></div></div>
+  <div class="certificate-panel" id="certificatePanel" hidden><p id="certificatePrompt">Your topic is complete! Generate your digital certificate.</p><button class="primary" id="showCertificateForm">Generate certificate</button><div id="certificateForm" hidden><label class="note-label" for="certificateName">Complete name (as it should appear)</label><input class="learner-input" id="certificateName" type="text" placeholder="Enter your complete name" autocomplete="name" maxlength="90"><button class="primary" id="downloadCertificate">Generate &amp; download certificate ↓</button></div><p class="privacy-note" id="certificatePrivacy">Certificates are generated in your browser. The app does not upload or store them online; the downloaded file stays on your device.</p></div>
 </section>
 <section class="next-info"><b>Tomorrow's learning</b><p>When the date changes, your next topic will unlock automatically. You focus on today's topic—no distracting course catalogue.</p></section>
 </main>
